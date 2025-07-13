@@ -52,172 +52,158 @@ class Perpustakaan {
 }
 ```
 
-4. **Constructor** adalah method yang pertama kali dijalankan pada saat pembuatan object. Pada kode ini, constructor ada di dalam class `Mahasiswa` dan `MahasiswaDetail`.
+4. **Constructor** adalah method yang pertama kali dijalankan pada saat pembuatan object. Pada kode ini, constructor ada di dalam class `Buku`
 
 ```bash
-public class Buku {
-    protected String judul;
-    protected String Penulis;
+class Buku {
+    private String judul;
+    private String penulis;
+    private int tahun;
 
-    public Buku(String judul, String penulis) {
-    this.judul = judul;
-    this.penulisa = penulis;
-  }
-}
-public class BukuDigital extends Buku {
-    private String formatFile;
-
-    public BukuDigital(String judul, String penulis, String formatFile) {
-    super(judul, penulis);
-    this.formatFile = formatFile;
-  }
-}
+    public Buku(String judul, String penulis, int tahun) {
+        this.judul = judul;
+        this.penulis = penulis;
+        this.tahun = tahun;
+    }
 ```
 
-5. **Mutator** atau setter digunakan untuk mengubah nilai dari suatu atribut. Pada kode ini, `setjudul` dan `setpenulis` dan `setFormatFile` adalah contoh method mutator.
+5. **Mutator** atau setter digunakan untuk mengubah nilai dari suatu atribut. Pada kode ini, `setjudul` dan `getjudul` adalah contoh method mutator.
 
 ```bash
 public void setJudul(String judul) {
     this.judul = judul;
 }
 
-public void setPenulis(String penulis) {
-    this.penulis = penulis;
+public void getjudul(String penulis) {
+    return.judul = judul;
 }
 
-public void setFormatFile(String formatFile){
-    this.formatFile = formatFile;
-}
 ```
 
-6. **Accessor** atau getter digunakan untuk mengambil nilai dari suatu atribut. Pada kode ini, `setJudul`, `setPenulis`,`getJudul`,`getPenulis` adalah contoh method accessor.
+6. **Accessor** atau getter digunakan untuk mengambil nilai dari suatu atribut. Pada kode ini, `setJudul`, `setPenulis`,`setTahun`,`Tampilkaninfo` adalah contoh method accessor.
 `
 ```bash
-public void setJudul(String Judul) {
-    this.judul = judul;
-}
-public void setPenulis(String penulis) {
-    this.penulis = penulis ;
-}
-public String getJudul() {
-    return judul;
-}
-public String getPenulis() {
-    return Penulis;
-}
+ public void tampilkanInfo() {
+        System.out.println("Judul: " + judul);
+        System.out.println("Penulis: " + penulis);
+        System.out.println("Tahun: " + tahun);
+    }
+
 ```
 
-7. **Encapsulation** adalah konsep menyembunyikan data dengan membuat atribut menjadi private dan hanya bisa diakses melalui method. Pada kode ini, atribut `judul` dan `penulis` dienkapsulasi dan hanya bisa diakses melalui method getter dan setter.
+7. **Encapsulation** adalah konsep menyembunyikan data dengan membuat atribut menjadi private dan hanya bisa diakses melalui method. Pada kode ini, atribut `judul`, `penulis` dan `tahun `dienkapsulasi dan hanya bisa diakses melalui method getter dan setter.
 
 ```bash
 private String judul;
 private String penulis;
+private String tahun;
 ```
 
-8. **Inheritance** adalah konsep di mana sebuah class bisa mewarisi property dan method dari class lain. Pada kode ini, `MahasiswaDetail` mewarisi `Mahasiswa` dengan sintaks `extends`.
+8. **Inheritance** adalah konsep di mana sebuah class bisa mewarisi property dan method dari class lain. Pada kode ini, `BukuDigital` mewarisi `Buku` dengan sintaks `extends`.
 
 ```bash
-public class BukuDigital extends buku{
-    private String linkdownload;
+class BukuDigital extends Buku {
+        private String format;
 
-    public String getLinkDownload() {
-        return linkDownload;
+        public BukuDigital(String judul, String penulis, int tahun, String format) {
+            super(judul, penulis, tahun);
+            this.format = format;
+        }
+
+        @Override
+        public void tampilkanInfo() {
+            super.tampilkanInfo();
+            System.out.println("Format: " + format);
+        }
     }
-
-    public void setLinkDownload(String linkDownload) {
-        this.linkDownload = linkDownload;
-    }
-
-    // Overriding method dari class Buku
-    @Override
-    public void tampilkanInfo() {
-        System.out.println("Judul: " + getJudul());
-        System.out.println("Penulis: " + getPenulis());
-        System.out.println("Link Download: " + linkDownload);
-  }
-}
 ```
 
-9. **Polymorphism** adalah konsep di mana sebuah nama dapat digunakan untuk merujuk ke beberapa tipe atau bentuk objek berbeda. Ini memungkinkan metode-metode dengan nama yang sama untuk berperilaku berbeda tergantung pada tipe objek yang mereka manipulasi, polymorphism bisa berbentuk Overloading ataupun Overriding. Pada kode ini, method `tampilkanInfo(String)` di `Buku` merupakan overloading method `BukuDigital` dan `tampilkanInfo` di `BukuDigital` merupakan override dari method `BukuDigital`.
+9. **Polymorphism** adalah konsep di mana sebuah nama dapat digunakan untuk merujuk ke beberapa tipe atau bentuk objek berbeda. Ini memungkinkan metode-metode dengan nama yang sama untuk berperilaku berbeda tergantung pada tipe objek yang mereka manipulasi, polymorphism bisa berbentuk Overloading ataupun Overriding. Pada kode ini, method `tambahbuku(void)` di `Buku` 
 
 ```bash
-public String tampilkanInfo() {
-    return "Judul: " + judul + "\nPenulis: " + penulis;
-}
-
-
-@Override
-public String tampilkanInfo() {
-    return super.tampilkanInfo() + "\nFormat: PDF";
-}
+public void tambahBuku(Buku buku) {
+        if (jumlahBuku < daftarBuku.length) {
+            daftarBuku[jumlahBuku++] = buku;
+            System.out.println("Buku berhasil ditambahkan.");
+        } else {
+            System.out.println("Kapasitas penuh.");
+        }
+    }
 ```
 
-10. **Seleksi** adalah statement kontrol yang digunakan untuk membuat keputusan berdasarkan kondisi. Pada kode ini, digunakan seleksi `if else` dalam method `getKatagoriBuku` dan seleksi `switch` dalam method `getJudulBuku`.
+10. **Seleksi** adalah statement kontrol yang digunakan untuk membuat keputusan berdasarkan kondisi. Pada kode ini, digunakan seleksi `if else` dalam method `BukuDigital` dan seleksi `switch` dalam method `judulbuku`.
 
 ```bash
-public String getKategoriBuku(int tahunTerbit) {
-    if (tahunTerbit >= 2020) {
-        return "Buku Baru";
-    } else {
-        return "Buku Lama";
-    }
-}
+ switch (pilih) {
+                    case 1:
+                        System.out.print("Judul: ");
+                        String judul = input.nextLine();
+                        System.out.print("Penulis: ");
+                        String penulis = input.nextLine();
+                        System.out.print("Tahun: ");
+                        int tahun = input.nextInt();
+                        input.nextLine(); // Consume newline
 
-public void menuPilihan(int pilihan) {
-    switch (pilihan) {
-        case 1:
-            System.out.println("Menampilkan daftar buku");
-            break;
-        case 2:
-            System.out.println("Menambahkan buku baru");
-            break;
-        case 3:
-            System.out.println("Keluar dari program");
-            break;
-        default:
-            System.out.println("Pilihan tidak valid");
-    }
-}
+                        System.out.print("Apakah buku digital (ya/tidak): ");
+                        String digital = input.nextLine();
+
+                        if (digital.equalsIgnoreCase("ya")) {
+                            System.out.print("Format file (pdf/epub): ");
+                            String format = input.nextLine();
+                            // Create a BukuDigital object and add it
+                            Perpustakaan.BukuDigital bd = perpustakaan.new BukuDigital(judul, penulis, tahun, format);
+                            perpustakaan.tambahBuku(bd);
+                        } else {
+                            // Create a regular Buku object and add it
+                            Buku b = new Buku(judul, penulis, tahun);
+                            perpustakaan.tambahBuku(b);
+                        }
 ```
 
 11. **Perulangan** adalah statement kontrol yang digunakan untuk menjalankan blok kode berulang kali. Pada kode ini, digunakan loop `for` untuk meminta input dan menampilkan data.
 
 ```bash
-for (int i = 0; i < daftarBuku.length; i++) {
-    System.out.println("Judul Buku ke-" + (i + 1) + ": " + daftarBuku[i].getJudul());
-}
+for (int i = 0; i < jumlahBuku; i++) {
+                System.out.print("Buku ke-" + (i + 1) + ": ");
+                daftarBuku[i].tampilkanInfo();
 ```
 
 12. **Input Output Sederhana** digunakan untuk menerima input dari user dan menampilkan output ke user. Pada kode ini, digunakan class `Scanner` untuk menerima input dan method `System.out.println` untuk menampilkan output.
 
 ```bash
-Scanner scanner = new Scanner(System.in);
+Scanner input = new Scanner(System.in);
+        Perpustakaan perpustakaan = new Perpustakaan();
 
-System.out.print("Masukkan Judul Buku: ");
-String judul = scanner.nextLine();
+        boolean jalan = true;
 
-System.out.print("Masukkan Nama Penulis: ");
-String penulis = scanner.nextLine();
-
-Buku buku = new Buku(judul, penulis);
-System.out.println("\nData Buku:");
-buku.tampilkanInfo();
+        while (jalan) {
+            try {
+                System.out.println("\n--- MENU PERPUSTAKAAN ---");
+                System.out.println("1. Tambah Buku");
+                System.out.println("2. Tampilkan Semua Buku");
+                System.out.println("3. Keluar");
+                System.out.print("Pilih: ");
+                int pilih = input.nextInt();
+                input.nextLine(); 
 ```
 
 13. **Array** adalah struktur data yang digunakan untuk menyimpan beberapa nilai dalam satu variabel. 
-Buku[] daftarBuku = new Buku[5];
-daftarBuku[0] = new Buku("Judul", "Penulis");
+```
+private Buku[] daftarBuku = new Buku[100];
+    private int jumlahBuku = 0;
 ```
 
 14. **Error Handling** digunakan untuk menangani error yang mungkin terjadi saat runtime. Pada kode ini, digunakan `try catch` untuk menangani error.
 
 ```bash
-try {
-int jumlah = scanner.nextInt();
-} catch (InputMismatchException e) {
-System.out.println("Input tidak valid!");
+ catch (java.util.InputMismatchException e) {
+                System.out.println("Input tidak valid. Masukkan angka untuk pilihan.");
+                input.nextLine(); // Consume the invalid input
+            }
+        }
+        input.close();
+    }
 }
-
 ```
 
 ## Usulan nilai
